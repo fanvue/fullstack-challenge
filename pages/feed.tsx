@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { trpc } from "../src/utils/trpcNext";
 import trpcSS from "../src/utils/trpcSS";
 import { InferGetServerSidePropsType } from "next";
@@ -11,26 +12,31 @@ const Feed = ({
   // });
 
   return (
-    // @TODO add a layout/template component that will strucutre the page
-    <main>
-      <h1>Feed page</h1>
-      <section>
-        {/* @TODO Move to own components (I like the ATOMIC design patterns, so this would be an organism composed of molecules which themselves would be made of atoms) */}
-        <div>
-          {initialPosts.length
-            ? initialPosts.map((p) => (
-                <div key={p.id}>
-                  <h1>{p.title}</h1>
-                  <p>{p.body}</p>
-                  <button onClick={() => console.log(p.id)}>
-                    Show comments
-                  </button>
-                </div>
-              ))
-            : "No posts"}
-        </div>
-      </section>
-    </main>
+    <>
+      <Head>
+        <title>Feed Page</title>
+      </Head>
+      {/* @TODO add a layout/template component that will strucutre the page */}
+      <main>
+        <h1>Feed page</h1>
+        <section>
+          {/* @TODO Move to own components (I like the ATOMIC design patterns, so this would be an organism composed of molecules which themselves would be made of atoms) */}
+          <div>
+            {initialPosts.length
+              ? initialPosts.map((p) => (
+                  <div key={p.id}>
+                    <h1>{p.title}</h1>
+                    <p>{p.body}</p>
+                    <button onClick={() => console.log(p.id)}>
+                      Show comments
+                    </button>
+                  </div>
+                ))
+              : "No posts"}
+          </div>
+        </section>
+      </main>
+    </>
   );
 };
 
