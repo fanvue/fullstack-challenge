@@ -1,7 +1,7 @@
 import Head from "next/head";
-import { trpc } from "../src/utils/trpcNext";
 import trpcSS from "../src/utils/trpcSS";
 import { InferGetServerSidePropsType } from "next";
+import { Box, Button, Container, Typography } from "@mui/material";
 
 const Feed = ({
   initialPosts,
@@ -17,25 +17,45 @@ const Feed = ({
         <title>Feed Page</title>
       </Head>
       {/* @TODO add a layout/template component that will strucutre the page */}
-      <main>
-        <h1>Feed page</h1>
-        <section>
-          {/* @TODO Move to own components (I like the ATOMIC design patterns, so this would be an organism composed of molecules which themselves would be made of atoms) */}
-          <div>
-            {initialPosts.length
-              ? initialPosts.map((p) => (
-                  <div key={p.id}>
-                    <h1>{p.title}</h1>
-                    <p>{p.body}</p>
-                    <button onClick={() => console.log(p.id)}>
-                      Show comments
-                    </button>
-                  </div>
-                ))
-              : "No posts"}
-          </div>
-        </section>
-      </main>
+      {/* @TODO Move to own components (I like the ATOMIC design patterns, so this would be an organism composed of molecules which themselves would be made of atoms) */}
+      <Container component="main" maxWidth="md">
+        <Typography variant="h1" component="h1" gutterBottom>
+          Feed Page
+        </Typography>
+        <Box component="section">
+          {initialPosts.length ? (
+            initialPosts.map((post) => (
+              <Box
+                key={post.id}
+                sx={{
+                  border: "1px solid #ddd",
+                  padding: 2,
+                  marginBottom: 2,
+                  borderRadius: 1,
+                }}
+              >
+                <Typography variant="h5" component="h2" gutterBottom>
+                  {post.title}
+                </Typography>
+                <Typography variant="body1" component="p" gutterBottom>
+                  {post.body}
+                </Typography>
+                <Button
+                  variant="contained"
+                  onClick={() => console.log(post.id)}
+                  aria-label={`Show comments for ${post.title}`}
+                >
+                  Show comments
+                </Button>
+              </Box>
+            ))
+          ) : (
+            <Typography variant="body1" component="p">
+              No posts available
+            </Typography>
+          )}
+        </Box>
+      </Container>
     </>
   );
 };
