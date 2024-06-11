@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Comment from "../molecules/Comments.molecule";
 import Comments from "../molecules/Comments.molecule";
 import { Box, Button, Typography } from "@mui/material";
 
