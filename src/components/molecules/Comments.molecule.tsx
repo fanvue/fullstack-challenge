@@ -1,4 +1,4 @@
-import { Paper, Typography } from "@mui/material";
+import { Button, Paper, Typography } from "@mui/material";
 
 const Comments = ({
   className = "",
@@ -33,6 +33,16 @@ const Comments = ({
           </div>
         </Paper>
       ))}
+      {onClose && (
+        <Button
+          style={{ marginTop: "14px" }}
+          variant="contained"
+          onClick={() => onClose(true)}
+          aria-label={`Hide comments`}
+        >
+          Hide comments
+        </Button>
+      )}
     </div>
   );
 };

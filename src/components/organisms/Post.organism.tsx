@@ -18,7 +18,13 @@ interface IPost {
 const Post = ({ className, post }: { className?: string; post: IPost }) => {
   const [expandedComment, setExpandedComment] = useState(false);
   const commentsArea = (() => {
-    if (expandedComment) return <Comments comments={post.comments} />;
+    if (expandedComment)
+      return (
+        <Comments
+          comments={post.comments}
+          onClose={() => setExpandedComment(false)}
+        />
+      );
 
     if (post.comments.length)
       return (
