@@ -1,3 +1,29 @@
+# TODO
+
+totally skipped:
+
+- tests (unit/integ/e2e)
+
+could expand with:
+
+- auth
+- prisma
+- better SEO, analytics etc.. Could use next-seo for sitemaps and more
+- actual FE work (quality mobile responsive designs)
+- vault page can be restructured into better components
+
+for quality teamwork & efficacy at least:
+
+- prettier, ideally with improts sorting
+- eslint
+- dev QOL improvements e.g. absolute imports (tsconfig),
+
+no design system?
+
+- tailwind, tailwind-merge etc..
+
+... much more ...
+
 # Fanvue's Fullstack challenge
 
 Setup the project:
