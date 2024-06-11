@@ -21,6 +21,8 @@ export const getAllPosts = publicProcedure.query(async () => {
     "https://jsonplaceholder.typicode.com/posts"
   );
 
+  // @TODO look into better approach as for each post we're doing a new API call -> N+1 problem
+  // Could be worth rethinking the UX to avoid doing this, or better looking into the BE and figuring out a better way to do this
   const commentsPromises = postsData.map(async (post: Post) => {
     const { data: comments } = await axios.get<Comment[]>(
       `https://jsonplaceholder.typicode.com/posts/${post.id}/comments`
@@ -31,7 +33,6 @@ export const getAllPosts = publicProcedure.query(async () => {
     };
   });
 
-  // Wait for all comments to be fetched
   const data = await Promise.all(commentsPromises);
 
   return data;
